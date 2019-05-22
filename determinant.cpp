@@ -102,11 +102,6 @@ int main(){
     
     printf("Calculating Determinant for the matrix: \n");
     printMatrix(m1, N);
-
-    m1[0][0] = 3;
-    m1[0][1] = 33;
-    m1[1][0] = 333;
-    m1[1][1] = 3333;
     std::cout << determinant(m1) << std::endl;
 
     deleteMatrix(m1, N);
