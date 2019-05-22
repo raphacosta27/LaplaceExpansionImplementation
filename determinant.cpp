@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 
-#define N 2
+#define N 4
 
 double ** createTestMatrix(int n){
     double **m = new double *[n];
@@ -77,7 +77,7 @@ double cofactor(double **matriz, int p, int n){
         double calc = 0;
         for (int i=0; i<nextSize; i++){
             // printf("next cofactors: %f\n", parcial[0][i]);
-            calc += matriz[0][p] * pow(-1, p) * cofactor(parcial, i, nextSize);
+            calc +=  pow(-1, p) * cofactor(parcial, i, nextSize);
         }
         return calc;
     }
@@ -90,7 +90,7 @@ double determinant(double **matriz){
     for(int i = 0; i < N; i++){ // p/ cada elemento da primeira linha da matriz
         double cof = cofactor(matriz, i, N);
         printf("Cof of %f: %f\n", matriz[0][i], cof);
-        det += cof;
+        det += matriz[0][i] * cof;
     }
     return det;
 }
