@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cmath>
+#include <x86intrin.h> //Extensoes SSE
+#include <bits/stdc++.h> //Bibliotecas STD
 using namespace std;
+using namespace std::chrono;
 
 #define N 2
 
@@ -79,7 +82,7 @@ double determinant(double **matriz){
     double **m2;
     for(int i = 0; i < N; i++){
         double cof = cofactor(matriz, i, N);
-        printf("Cofactor of %f: %f\n", matriz[0][i], cof);
+        // printf("Cofactor of %f: %f\n", matriz[0][i], cof);
         det += matriz[0][i] * cof;
     }
     return det;
@@ -92,6 +95,10 @@ int main(){
     
     printf("Calculating Determinant for the matrix: \n");
     printMatrix(m1, N);
-    std::cout << determinant(m1) << std::endl;
+    auto now = high_resolution_clock::now();
+    double d = determinant(m1);
+    auto end_time = duration_cast<duration<double>>(high_resolution_clock::now() - now).count();
+    std::cout << "D(m) = "<< d << std::endl;
+    std::cout << "Time: " << end_time << "\n";
     deleteMatrix(m1, N);
 }
