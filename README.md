@@ -93,6 +93,12 @@ Calculated Determinant for the matrix:
 DETERMINANT RESULT: 0.000000
 ```
 
+## Future implementations and possible improvements
+There are three main improvements that I would like to implement in this algorithm:
+1. Get the input matrix by an input file. I thought about a simple .txt.
+2. Calculate the Laplace Expansion for any line or any column. So you can input which one you want to calculate.
+3. Some unit tests using a C++ function for calculating a determinant.
+
 ## Built With
 
 * [OpenMPI](https://www.open-mpi.org/) - OpenMPI official website
