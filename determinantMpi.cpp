@@ -48,7 +48,7 @@ void printMatrix(double **m, int n){
     printf("\n");
 }
 
-double cofactor(int p, int n, double matriz[][]){
+double cofactor(double **matriz, int p, int n){
     if(n == 1){
         return matriz[0][0];
     }
@@ -90,50 +90,39 @@ int main(int argc, char** argv){
     int world_rank; MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     int world_size; MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-    int i, j;
-    // double **m1;
-    double m1[N][N];
+    double **m1;
     int ready = 0;
-    double cofs[N];
     double cof;
     
     if(world_rank == 0){
-        // m1 = createTestMatrix(N);
-        printf("Calculating Determinant for the matrix: \n");
-        // printMatrix(m1, N);
+        m1 = createTestMatrix(N);
+        printf("MASTER: Calculating Determinant for the matrix: \n");
+        printMatrix(m1, N);
 
+        printf("MASTER: Broadcasting...\n");
         
-        m1[0][0] = 1;
-        m1[0][1] = 2;
-        m1[1][0] = 3;
-        m1[1][1] = 4;
+        for(int i = 0; i<N; i++) {
+            MPI_Bcast(&(m1[i][0]), N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+        }
 
-        printf("Broadcasting...\n");
-        MPI_Bcast(&m1, N*N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-        // for(int i = 0; i<N; i++) {
-        //     MPI_Send(&m1, N*N, MPI_DOUBLE, i+1, READY, MPI_COMM_WORLD);
-        // }
-
-        // double det = 0;
-        // for(int i = 0; i < N; i++){
-        //     MPI_Recv(&cof, 1, MPI_DOUBLE, i+1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        //     det += m1[0][i] * cof;
-        // }
+        double det = 0;
+        for(int i = 0; i < N; i++){
+            MPI_Recv(&cof, 1, MPI_DOUBLE, i+1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            det += m1[0][i] * cof;
+        }
         
-        // std::cout << det << std::endl;
-        // deleteMatrix(m1, N);
+        std::cout << det << std::endl;
+        deleteMatrix(m1, N);
     }
     else{
         printf("%d: waiting for the beggining flag\n", world_rank);
-        MPI_Bcast(&m1, N*N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-        // MPI_Recv(&m1, N*N, MPI_DOUBLE, 0, READY, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        if(ready == 1){
-            printf("%d: starting computing, p: %d\n", world_rank, world_rank-1);
-            // printMatrix(m1, N);
-            // cof = cofactor(m1, world_rank-1, N);
-            // printf("Cofactor of %f = %f\n", m1[0][world_rank], cof);
-            // MPI_Send(&cof, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+        m1 = alocMatrix(N);
+        for (int i = 0; i < N; i++){
+            MPI_Bcast(&(m1[i][0]), N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
         }
+        printf("%d: starting computing, p: %d\n", world_rank, world_rank-1);
+        cof = cofactor(m1, world_rank-1, N);
+        MPI_Send(&cof, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
     MPI_Finalize();
 }
