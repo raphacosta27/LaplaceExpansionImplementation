@@ -1,70 +1,38 @@
 # OpenMPI Laplace Expansion Implementation in C++
 
-The object of this project is to implement the Laplace Expansion (also called Cofactor Expansion) method for computing the determinant |A| of an n x n matrix A. Also, to study the tool of OpenMPI, there`s an optmized version using multicores and distributed memory. 
+The object of this project is to implement the Laplace Expansion (also called Cofactor Expansion) method for computing the determinant |A| of an n x n matrix A. Also, to study the tool of OpenMPI, there`s an optmised version using multicores and distributed memory. 
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To get a copy of the project, clone this repository.
+```python
+git clone https://github.com/raphacosta27/LaplaceExpansionImplementation
+cd LaplaceExpansionImplementation
+```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+To run the file determinant.cpp, you just have to install g++. To compile it, I used the g++-9.
+On Mac:
 ```
-Give examples
+brew install gcc
+g++-9 -v
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+Also, to use the MPI optmised version, you have to install the OpenMPI lib for gcc. 
+On Mac:
 ```
-Give the example
+brew install open-mpi 
 ```
+For other OS, check the OpenMPI official website linked in some sections below for installation instructions.
 
-And repeat
+### The Laplace Expansion method
+In summary, Laplace expansion is a method that uses determinants of smaller matrices to find the determinant of a larger square matrix. For a good mathematical explanation you can check the [CliffsNotes](https://www.cliffsnotes.com/study-guides/algebra/linear-algebra/the-determinant/laplace-expansions-for-the-determinant) demonstration. 
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+* [OpenMPI](https://www.open-mpi.org/) - OpenMPI official website
+* [GCC](https://gcc.gnu.org/) - GCC, the GNU Compiler Collection
+* [Brew](https://brew.sh/) - The missing package manager for macOS (or Linux)
 
 ## Versioning
 
@@ -72,9 +40,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Raphael Costa** - [Raphael Costa](https://github.com/raphacosta27)
 
 ## License
 
@@ -82,6 +48,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* Thanks for some good ideas with this readme style **Billie Thompson** - [PurpleBooth](https://github.com/PurpleBooth)
 * Inspiration
-* etc
+* etc 
