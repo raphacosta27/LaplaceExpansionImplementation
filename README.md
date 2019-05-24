@@ -116,3 +116,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 * Thanks for some good ideas with this readme style **Billie Thompson** - [PurpleBooth](https://github.com/PurpleBooth)
+* Buitl with some help of my Insper SuperComputers subject teacher **Luciano Soares** - [lpsoares](https://github.com/lpsoares) 
