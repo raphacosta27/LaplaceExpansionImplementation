@@ -62,7 +62,7 @@ Master:
 - The number of jobs corresponds to the size of the input matrix.
 - Determine how many and what Cofactors which core will calculate. Ex: For an 8x8 matrix, Worker 1 will calculate 2 cofactors and Workers 2 and 3 will calculate 3 cofactors. 
 - Creates the matrix to be calculated.
-- Uses MPI_Broadcast to send the matrix to its workers.
+- Uses MPI_Broadcast to send the matrix to its workers. \n
 Workers:
 - The workers do the number of jobs that the master determined for them. 
 - Send back the local results via MPI_Reduce instruction
