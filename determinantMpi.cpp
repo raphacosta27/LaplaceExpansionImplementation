@@ -140,6 +140,7 @@ int main(int argc, char** argv){
 
     if(world_rank == 0){
         printf("----------WORKERS RELAT ----------\n");
+        printf("Number of workers: %d\n", n_processors-1);
         for (int i = 0; i < n_processors-1; i++){
             printf("Worker %d\n", workers[i].rank);
             printf("Jobs: %d\n", workers[i].jobs);
@@ -153,7 +154,6 @@ int main(int argc, char** argv){
             printf("-------\n");
         }
         printf("----------FINAL RELAT----------\n");
-        printf("Number of workers: %d\n", n_processors-1);
         printf("Calculated Determinant for the matrix: \n");
         printMatrix(m1, N);
         printf("DETERMINANT RESULT: %f\n", det_total);
