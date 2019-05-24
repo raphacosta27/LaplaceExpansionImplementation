@@ -139,7 +139,7 @@ int main(int argc, char** argv){
     MPI_Reduce(&det_local, &det_total, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
     if(world_rank == 0){
-        printf("----------WORKERS RELAT ----------\n");
+        printf("----------WORKERS REPORT----------\n");
         printf("Number of workers: %d\n", n_processors-1);
         for (int i = 0; i < n_processors-1; i++){
             printf("Worker %d\n", workers[i].rank);
@@ -153,7 +153,7 @@ int main(int argc, char** argv){
             }
             printf("-------\n");
         }
-        printf("----------FINAL RELAT----------\n");
+        printf("----------FINAL REPORT----------\n");
         printf("Calculated Determinant for the matrix: \n");
         printMatrix(m1, N);
         printf("DETERMINANT RESULT: %f\n", det_total);

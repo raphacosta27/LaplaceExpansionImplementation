@@ -5,8 +5,6 @@
 using namespace std;
 using namespace std::chrono;
 
-#define N 2
-
 double ** createTestMatrix(int n){
     double **m = new double *[n];
     int c = 1;
@@ -77,7 +75,7 @@ double cofactor(double **matriz, int p, int n){
     }
 }
 
-double determinant(double **matriz){
+double determinant(double **matriz, int N){
     double det = 0;
     double **m2;
     for(int i = 0; i < N; i++){
@@ -88,17 +86,23 @@ double determinant(double **matriz){
     return det;
 }
 
-int main(){
+int main(int argc, char** argv){
+    if (argc != 2) {
+        std::cerr << "Uso: ./gettingProcesses tamanho matriz\n";
+        exit(1);
+    }
+    int N = atoi(argv[1]);
+
     int i, j;
-    
+
     double **m1 = createTestMatrix(N);
     
     printf("Calculating Determinant for the matrix: \n");
     printMatrix(m1, N);
     auto now = high_resolution_clock::now();
-    double d = determinant(m1);
+    double d = determinant(m1, N);
     auto end_time = duration_cast<duration<double>>(high_resolution_clock::now() - now).count();
-    std::cout << "D(m) = "<< d << std::endl;
+    std::cout << "D |m| = "<< d << std::endl;
     std::cout << "Time: " << end_time << "\n";
     deleteMatrix(m1, N);
 }
