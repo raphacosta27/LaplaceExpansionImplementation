@@ -87,6 +87,7 @@ double determinant(double **matriz, int N){
 }
 
 int main(int argc, char** argv){
+    auto now = high_resolution_clock::now();
     if (argc != 2) {
         std::cerr << "Uso: ./gettingProcesses tamanho matriz\n";
         exit(1);
@@ -98,8 +99,7 @@ int main(int argc, char** argv){
     double **m1 = createTestMatrix(N);
     
     printf("Calculating Determinant for the matrix: \n");
-    printMatrix(m1, N);
-    auto now = high_resolution_clock::now();
+    printMatrix(m1, N);  
     double d = determinant(m1, N);
     auto end_time = duration_cast<duration<double>>(high_resolution_clock::now() - now).count();
     std::cout << "D |m| = "<< d << std::endl;
