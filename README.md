@@ -1,6 +1,6 @@
 # Recursive Laplace Expansion optimised with OpenMPI in C++
 
-The object of this project is to implement the Laplace Expansion (also called Cofactor Expansion) method for computing the determinant |A| of an n x n matrix A. Also, to study the tool of OpenMPI, there`s an optmised version using multicores and distributed memory. 
+The purpose of this project is to implement the Laplace Expansion (also called Cofactor Expansion) method for computing the determinant |A| of an n x n matrix A. Also, to study the tool of OpenMPI, there`s an optmised version using multicores and distributed memory. 
 
 ## Getting Started
 To get a copy of the project, clone this repository.
